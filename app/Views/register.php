@@ -1,33 +1,33 @@
 <div class="container">
     <div class="row">
-        <div class="col-12 col-sm8- offset-sm-2 col-md-6 offset-md-3 mt-5 pt-3 pb-3 bg-white from-wrapper">
+        <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 mt-5 pt-3 pb-3 bg-white form-wrapper">
             <div class="container">
                 <h3>Register</h3>
                 <hr>
-                <form class="" action="/register" method="post">
+                <form action="/register" method="POST">
                     <div class="row">
                         <div class="col-12 col-sm-6">
                             <div class="form-group">
                                     <label for="firstname">First Name</label>
-                                    <input type="text" class="form-control" name="firstname" id="firstname" values="<?= set_value('email')?>">
+                                    <input type="text" class="form-control" name="firstname" id="firstname" value="<?= set_value('email')?>">
                             </div>
                         </div>
                     
                         <div class="col-12 col-sm-6">
                             <div class="form-group">
                                     <label for="lastname">Last Name</label>
-                                    <input type="text" class="form-control" name="lastname" id="lastname" values="<?= set_value('email')?>">
+                                    <input type="text" class="form-control" name="lastname" id="lastname" value="<?= set_value('email')?>">
                             </div>
 
                         </div>
 
-                        <div class="col-12 col-sm-6">
+                        <div class="col-12">
                             <div class="form-group">
-                                <label for="email">Eamil adress</label>
-                                <input type="text" class="form-control" name="email" id="email" values="<?= set_value('email')?>">
+                                <label for="email">Eamil address</label>
+                                <input type="text" class="form-control" name="email" id="email" value="<?= set_value('email')?>">
                             </div>
                         </div>
-                    </div>
+                    
 
                         <div class="col-12 col-sm-6">
                             <div class="form-group">
@@ -42,6 +42,21 @@
                                 <input type="password" class="form-control" name="password_confirm" id="password_confirm" value="">
                             </div>
                         </div>
+ 
+
+                        <?php if (isset($validation)): ?>
+                            <div class="col-12">
+                                <div class="alert alert-danger" role="alert">
+                                    <?= $validation->listErrors() ?>
+                                </div>
+                            </div>    
+                        <?php endif; ?>
+
+
+
+
+                    </div>
+
 
                     <div class="row mt-3">
                         <div class="col-12 col-sm-4">
