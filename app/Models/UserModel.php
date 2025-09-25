@@ -8,7 +8,7 @@ class UserModel extends Model{
     //protected $primaryKey = 'id';
     protected $allowedFields = ['firstname','lastname','email','password','update_at'];
     protected $beforeInsert = ['beforeInsert'];
-    protected $beforeupdate = ['beforeUpdate'];
+    protected $beforeUpdate = ['beforeUpdate'];
 
     protected function beforeInsert(array $data){
         $data = $this->passwordHash($data);

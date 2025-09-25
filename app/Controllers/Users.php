@@ -6,7 +6,7 @@ use CodeIgniter\Controller;
 
 class Users extends BaseController
 {
-    public function index(){
+    public function login(){
        $data = [];
        helper(['form']);
        echo view('templetes/header', $data);
