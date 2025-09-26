@@ -12,6 +12,10 @@ use CodeIgniter\Filters\InvalidChars;
 use CodeIgniter\Filters\PageCache;
 use CodeIgniter\Filters\PerformanceMetrics;
 use CodeIgniter\Filters\SecureHeaders;
+use App\Filters\Auth;
+use App\Filters\Noauth;
+use App\Filters\UsersCheck;
+
 
 class Filters extends BaseFilters
 {
@@ -34,6 +38,9 @@ class Filters extends BaseFilters
         'forcehttps'    => ForceHTTPS::class,
         'pagecache'     => PageCache::class,
         'performance'   => PerformanceMetrics::class,
+        'auth'          => Auth::class,
+        'noauth'        => Noauth::class,
+        'userscheck'    => UsersCheck::class,
     ];
 
     /**
@@ -51,13 +58,13 @@ class Filters extends BaseFilters
      */
     public array $required = [
         'before' => [
-            'forcehttps', // Force Global Secure Requests
-            'pagecache',  // Web Page Caching
+            // 'forcehttps', // Force Global Secure Requests
+            // 'pagecache',  // Web Page Caching
         ],
         'after' => [
-            'pagecache',   // Web Page Caching
-            'performance', // Performance Metrics
-            'toolbar',     // Debug Toolbar
+            // 'pagecache',   // Web Page Caching
+            // 'performance', // Performance Metrics
+            // 'toolbar',     // Debug Toolbar
         ],
     ];
 
@@ -72,6 +79,8 @@ class Filters extends BaseFilters
      */
     public array $globals = [
         'before' => [
+            'userscheck'
+            
             // 'honeypot',
             // 'csrf',
             // 'invalidchars',

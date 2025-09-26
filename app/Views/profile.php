@@ -4,7 +4,13 @@
             <div class="container">
                 <h3><?= $user['firstname'].''.$user['lastname'] ?></h3>
                 <hr>
-                <form action="/register" method="POST">
+                 <?php if (session()->get('success')): ?>
+                    <div class="alert alert-success" role="alert">
+                        <?= session()->get('success') ?>
+                    </div>
+                <?php endif; ?> 
+                
+                <form action="/profile" method="POST">
                     <div class="row">
                         <div class="col-12 col-sm-6">
                             <div class="form-group">
@@ -24,7 +30,7 @@
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="email">Eamil address</label>
-                                <input type="text" class="form-control" readonly id="email" value="<?= set_value('email')?>">
+                                <input type="text" class="form-control" readonly id="email" value="<?= $user['email'] ?>">
                             </div>
                         </div>
                     

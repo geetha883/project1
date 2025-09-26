@@ -89,10 +89,61 @@ class Users extends BaseController
         return true;
     }
 
-    public function profile(){
-        echo view('templetes/header', $data);
-        echo view('profile');
-        echo view('templetes/footer');
+   public function profile()
+{
+    // Fix: Redirect only if NOT logged in
+    if (! session()->get('isLoggedIn')) {
+        return redirect()->to('/login');
+    }
 
+    $data = [];
+    helper(['form']);
+    $model = new UserModel();
+
+    if ($this->request->getMethod() == 'POST') {
+        $rules = [
+            'firstname' => 'required|min_length[3]|max_length[50]',
+            'lastname'  => 'required|min_length[3]|max_length[50]',
+        ];
+
+        if ($this->request->getPost('password') != '') {
+            $rules['password'] = 'required|min_length[8]|max_length[255]';
+            $rules['password_confirm'] = 'matches[password]';
+        }
+
+        if (! $this->validate($rules)) {
+            $data['validation'] = $this->validator;
+        } else {
+            $newData = [
+                'id'        => session()->get('id'),
+                'firstname' => $this->request->getPost('firstname'),
+                'lastname'  => $this->request->getPost('lastname'),
+            ];
+
+            if ($this->request->getPost('password') != '') {
+                $newData['password'] = password_hash(
+                    $this->request->getPost('password'),
+                    PASSWORD_DEFAULT
+                );
+            }
+
+            $model->save($newData);
+            session()->setFlashdata('success', 'Successfully Updated!');
+            return redirect()->to('/profile');
+        }
+    }
+
+    $data['user'] = $model->where('id', session()->get('id'))->first();
+
+    echo view('templetes/header', $data);
+    echo view('profile');
+    echo view('templetes/footer');
+}
+
+
+    
+    public function logout(){
+        session()->destroy();
+       return redirect()->to('/login');
     }
 }
