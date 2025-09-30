@@ -38,14 +38,26 @@
                         <div class="col-12 col-sm-6">
                             <div class="form-group">
                                 <label for="password">Password</label>
-                                <input type="password" class="form-control" name="password" id="password" value="">
+                                <div class="input-group">
+                                    <input type="password" class="form-control" name="password" id="password">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text" id="togglePassword" style="cursor:pointer;">
+                                            <i class="fa fa-eye" id="eyeIcon"></i>
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
                         <div class="col-12 col-sm-6">
-                            <div class="form-group">
-                                <label for="password_confirm">Confirm Password</label>
-                                <input type="password" class="form-control" name="password_confirm" id="password_confirm" value="">
+                            <label for="password">Confirm Password</label>
+                            <div class="input-group">
+                                <input type="password" class="form-control" name="password_confirm" id="password_confirm">
+                                <div class="input-group-append">
+                                    <span class="input-group-text" id="togglePassword" style="cursor:pointer;">
+                                        <i class="fa fa-eye" id="eyeIcon"></i>
+                                    </span>
+                                </div>
                             </div>
                         </div>
  

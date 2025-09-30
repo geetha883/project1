@@ -19,9 +19,24 @@
                         <label for="email">Eamil adress</label>
                         <input type="text" class="form-control" name="email" id="email" value="<?= old('email') ?>">
                     </div>
+
+                    
                     <div class="form-group">
+
+
                         <label for="password">Password</label>
-                        <input type="password" class="form-control" name="password" id="password" value="">
+                            <div class="input-group">
+                                <input type="password" class="form-control" name="password" id="password">
+                                <div class="input-group-append">
+                                    <span class="input-group-text" id="togglePassword" style="cursor:pointer;">
+                                        <i class="fa fa-eye" id="eyeIcon"></i>
+                                    </span>
+                                </div>
+                            </div>
+
+
+
+                        
                     </div>
 
                     <?php if (isset($validation)): ?>
