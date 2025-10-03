@@ -5,10 +5,11 @@ use CodeIgniter\Model;
 
 class UserModel extends Model{
     Protected $table = 'users';
-    //protected $primaryKey = 'id';
-    protected $allowedFields = ['firstname','lastname','email','password','update_at'];
+    protected $primaryKey = 'id';
+    protected $allowedFields = ['firstname','lastname','email','password'];
     protected $beforeInsert = ['beforeInsert'];
     protected $beforeUpdate = ['beforeUpdate'];
+    protected $returnType = 'array'; 
 
     protected function beforeInsert(array $data){
         $data = $this->passwordHash($data);

@@ -6,6 +6,22 @@ use App\Models\UserModel;
 
 class Users extends BaseController
 {
+    protected $usermodel;
+
+    public function __construct(){
+        $this->usermodel = new UserModel();
+
+    }
+    public function viewusers()
+{
+    $data['users'] = $this->usermodel->findAll();
+
+    echo view('templetes/header');
+    echo view('dashboard', $data);   // send data to dashboard view
+    echo view('templetes/footer');
+}
+
+
     public function login()
     {
         $data = [];
@@ -146,4 +162,8 @@ class Users extends BaseController
         session()->destroy();
        return redirect()->to('/login');
     }
+
+
+ 
+
 }
