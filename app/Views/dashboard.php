@@ -13,13 +13,14 @@
     <h3 class="mb-4 text-center">User List</h3>
     
     <div class="table-responsive">
-        <table class="table table-hover table-striped table-bordered align-middle">
+        <table class="table table-striped table-bordered align-middle">
             <thead class="table-dark text-center">
                 <tr>
                     <th scope="col">Id</th>
                     <th scope="col">First Name</th>
                     <th scope="col">Last Name</th>
                     <th scope="col">Email</th>
+                    <th scope="col">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -30,11 +31,19 @@
                             <td><?= esc($user['firstname']) ?></td>
                             <td><?= esc($user['lastname']) ?></td>
                             <td><?= esc($user['email']) ?></td>
+                            <td class="text-center">
+                                <a href="/users/edit/<?= $user['id'] ?>" class="btn btn-sm btn-primary">
+                                    <i class="fas fa-edit"></i> Edit
+                                </a>
+                                <a href="/users/delete/<?= $user['id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this user?');">
+                                    <i class="fas fa-trash"></i> Delete
+                                </a>
+                            </td>
                         </tr>
                     <?php endforeach ?>
                 <?php else : ?>
                     <tr>
-                        <td colspan="4" class="text-center text-muted">No users found</td>
+                        <td colspan="5" class="text-center text-muted">No users found</td>
                     </tr>
                 <?php endif ?>
             </tbody>

@@ -15,6 +15,9 @@ $routes->post('/login/auth', 'Login::auth');
 $routes->match(['GET','POST'], 'profile', 'Users::profile', ['filter' => 'auth']);
 // $routes->get( 'dashboard', 'Dashboard::index', ['filter' => 'auth']);
 $routes->get('/dashboard', 'Users::viewusers', ['filter' => 'auth']);
+$routes->get('/users/edit/(:num)', 'Users::edit/$1');
+$routes->post('/users/update/(:num)', 'Users::update/$1');
+$routes->post('/users/delete/(:num)', 'Users::delete/$1');
 
 
 

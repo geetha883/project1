@@ -154,7 +154,7 @@ class Users extends BaseController
     echo view('templetes/header', $data);
     echo view('profile');
     echo view('templetes/footer');
-}
+    }
 
 
     
@@ -163,7 +163,31 @@ class Users extends BaseController
        return redirect()->to('/login');
     }
 
+    public function edit($id)
+    {
+        $userModel = new UserModel();
+        $data['user'] = $userModel->find($id);
+        return view('edituser', $data);
+    }
 
- 
+
+    public function update($id)
+    {
+        $userModel = new UserModel();
+        $data = [
+            'firstname' => $this->request->getPost('firstname'),
+            'lastname' => $this->request->getPost('lastname'),
+            'email' => $this->request->getPost('email'),
+        ];
+        $userModel->update($id, $data);
+        return redirect()->to('/dashboard')->with('success', 'User updated successfully');
+    }
+
+    public function delete($id)
+    {
+        $userModel = new UserModel();
+        $userModel->delete($id);
+        return redirect()->to('/dashboard')->with('success', 'User deleted successfully');
+    }
 
 }
